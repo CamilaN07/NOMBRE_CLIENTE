@@ -3,9 +3,11 @@ from datetime import datetime
 
 mi_app = FastAPI()
 
+#ENPOIN
+
 @mi_app.get("/")
 def inicio():
-    return {"mensaje": "Hola aprendices 3407180"}
+    return {"mensaje": "Hola estoy aprendiendo FASTAPI"}
 
 @mi_app.get("/saludar")
 def saludar():

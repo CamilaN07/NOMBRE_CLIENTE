@@ -1,2 +1,5 @@
+#no debe incluir los entornos virtuales
 venv/
-_pycache_/
+
+#pycache
+__pycache__/
