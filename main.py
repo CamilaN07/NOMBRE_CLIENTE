@@ -63,3 +63,28 @@ def amigo(id: int):
         return {"error": "No esta"}
         
     return {"amigo": lista_amigos[id]}
+
+x = 1 #int
+x = "Camila" #str
+
+
+#usuario, endpoint para listar todos los clientes
+lista_clientes = [
+    {"id": 1, "nombre":"Camila","email": "Camila@gmail.com","edad": 18, "descripción":"NA"},
+    {"id": 2, "nombre":"Sebas", "email": "Sebas@gmail.com", "edad": 19, "descripción":"NA"},
+    {"id": 3, "nombre":"Juan", "email": "Juan@gmail.com", "edad": 20, "descripción":"NA"},
+    {"id": 4, "nombre":"Matias", "email": "Matias@gmail.com", "edad": 18, "descripción":"NA"},
+    {"id": 5, "nombre":"Maria", "email": "Maria@gmail.com", "edad": 18, "descripción":"NA"}
+]
+@mi_app.get("/clientes")
+def listar_clientes():
+    return lista_clientes
+
+#endpoint para listar 1 solo cliente de la lista
+@mi_app.get("/clientes/{cliente_id}")
+def listar_cliente(cliente_id: int):
+    #recorrer la lista_clientes
+    for i, obj_cliente in lista_clientes:
+        if obj_cliente.get("id") == cliente_id:
+            return obj_cliente
+        
