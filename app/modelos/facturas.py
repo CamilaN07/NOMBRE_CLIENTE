@@ -42,3 +42,5 @@ class facturaleer(FacturaBase):
 
 class facturaleercompuesta(facturaleer):
     transacciones: list["transaccion"] = []
+
+    
