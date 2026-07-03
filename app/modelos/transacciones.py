@@ -32,3 +32,5 @@ class eliminarTransaccion(BaseModel):
 class transaccionleer(TransaccionBase):
     id: int
     
+
+    
