@@ -57,3 +57,24 @@ async def crear_factura(cliente_id: int, datos_factura: facturaCrear, sesion: Se
     sesion.commit()
     sesion.refresh(factura_val)
     return factura_val
+
+#endpoint para editar una factura existente y agregar a la lista
+@rutas_facturas.patch("/facturas/{factura_id}", response_model=Factura)
+async def editar_factura(factura_id: int, datos_factura: facturaEditar):
+    for i, factura in enumerate(lista_facturas):
+        if factura.id == factura_id:
+            factura_val = Factura.model_validate(datos_factura.model_dump())
+            factura_val.id = factura_id
+            lista_facturas[i] = factura_val
+            return factura_val
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Factura con {factura_id} no fue encontrada")
+
+
+#endpoint para eliminar una factura existente
+@rutas_facturas.delete("/facturas/{factura_id}", response_model=Factura)
+async def eliminar_factura(factura_id: int):
+    for i, factura in enumerate(lista_facturas):
+        if factura.id == factura_id:
+            factura_eliminada = lista_facturas.pop(i)
+            return factura_eliminada
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Factura con {factura_id} no fue encontrada")
