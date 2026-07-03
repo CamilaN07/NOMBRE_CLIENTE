@@ -27,3 +27,4 @@ def obtener_sesion( ):
 #resgistrar la sesion como dependencia, utilizada en nustros endpoints
 
 Sesion_dependancia = Annotated[Session, Depends(obtener_sesion)]
+
