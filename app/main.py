@@ -1,0 +1,21 @@
+from fastapi import FastAPI, HTTPException, status
+from app.modelos.clientes import Cliente
+from app.modelos.transacciones import TransaccionBase
+from app.modelos.facturas import Factura
+from app.enrutadores import clientes
+from app.enrutadores import facturas
+from app.enrutadores import transacciones
+from app.conexion_bd import crear_tablas
+
+
+#||||||||||||||||||||||
+from app.modelos.clientes import Cliente, clienteleer
+from app.modelos.facturas import Factura, facturaleer, facturaleercompuesta
+from app.modelos.transacciones import transaccion
+
+# Resolver referencias cruzadas entre modelos (forward references)
+Cliente.model_rebuild()
+Factura.model_rebuild()
+transaccion.model_rebuild()
+facturaleer.model_rebuild()
+facturaleercompuesta.model_rebuild()
